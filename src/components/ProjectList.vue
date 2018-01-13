@@ -5,9 +5,12 @@
 </template>
 
 <script>
+import ProjectItem from '@/components/ProjectItem';
+
 export default {
+
   name: 'ProjectList',
-  components: { },
+  components: { ProjectItem },
   data() {
     return {
 
