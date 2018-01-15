@@ -19,18 +19,24 @@ export default {
       projects: [
         {
           id: 0,
-          title: 'Project One',
-          description: 'The first of three projects.',
+          title: 'Retro Desktop',
+          description: 'An Angular 2 recreation of an old windows desktop. Complete with a text-editor, paint program, and minesweeper.',
+          technologies: ['Angular 2', 'Express.js'],
+          languages: ['Javascript', 'SQL'],
         },
         {
           id: 1,
-          title: 'Project Two',
-          description: 'The second of three projects.',
+          title: 'Dnd Campaign Manager',
+          description: 'A D&D campaign manager made in Angular 2. It gives you the ability to create items, monsters, maps, and player characters. You can also limit the variety of monsters and items for ease of use when customizing your campaign.',
+          technologies: ['Angular 2', 'Firebase'],
+          languages: ['Javascript'],
         },
         {
           id: 2,
-          title: 'Project Three',
-          description: 'The last of three projects.',
+          title: 'Global Disease Simulator',
+          description: 'An interactive simulation of a global pandemic made with vanilla javascript.',
+          technologies: [],
+          languages: ['Javascript'],
         },
       ],
     };
