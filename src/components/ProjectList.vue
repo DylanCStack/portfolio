@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>My projects.</h1>
+    <h1 id='header'>My projects.</h1>
     <ProjectItem v-for='project in projects' :project="project" :key="project.id">
 
     </ProjectItem>
@@ -45,5 +45,8 @@ export default {
 </script>
 
 <style scoped>
-
+#header {
+  margin: 60px 10%;
+  font-size: 5em;
+}
 </style>
