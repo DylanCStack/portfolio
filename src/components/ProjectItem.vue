@@ -1,9 +1,10 @@
 <template>
   <div class='project-item'>
-    <img src=''/>
-    <h3 class='title'>{{project.title}}</h3>
-    <p class='description'>{{project.description}}</p>
-    <p class='tech-list'><span class='tech' v-for='technology in project.technologies'>{{technology}}</span><span class='language' v-for='language in project.languages'>{{language}} </span></p>
+    <div class='bg'>
+      <h3 class='title'>{{project.title}}</h3>
+      <p class='description'>{{project.description}}</p>
+      <p class='tech-list'><span class='tech' v-for='technology in project.technologies'>{{technology}}</span><span class='language' v-for='language in project.languages'>{{language}} </span></p>
+    </div>
   </div>
 </template>
 
@@ -29,8 +30,8 @@ export default {
   padding:20px 0 0 3%;
 }
 
-.project-item img {
-  height: 75vh;
+.project-item .bg {
+  height: 95vh;
   width: 100%;
   border-top: 2px solid;
   border-bottom: 2px solid;
