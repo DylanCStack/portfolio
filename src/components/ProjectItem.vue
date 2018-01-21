@@ -1,6 +1,7 @@
 <template>
   <div class='project-item'>
     <div class='bg'>
+      <carousel :images='images'></carousel>
       <h3 class='title'>{{project.title}}</h3>
       <p class='description'>{{project.description}}</p>
       <p class='tech-list'><span class='tech' v-for='technology in project.technologies'>{{technology}}</span><span class='language' v-for='language in project.languages'>{{language}} </span></p>
@@ -9,13 +10,25 @@
 </template>
 
 <script>
+import Carousel from '@/components/Carousel';
+
 export default {
   name: 'ProjectItem',
-  components: { /* carousel here */},
+  components: { Carousel },
   props: ['project'],
   data() {
     return {
-
+      images: [
+        {
+          url: 'fake path',
+        },
+        {
+          url: 'fake path',
+        },
+        {
+          url: 'fake path',
+        },
+      ],
     };
   },
 };
