@@ -3,7 +3,8 @@
     <div class='slides-container'>
       <img v-for='(image, index) in images':key='index' :class='["slide", getOrder(index)]'/>
     </div>
-    <button class='controls btn-left' v-on:click='previous'/><button class='controls btn-right' v-on:click='next'/>
+    <button class='controls btn-left' v-on:click='previous'></button>
+    <button class='controls btn-right' v-on:click='next'/></button>
   </div>
 </template>
 
