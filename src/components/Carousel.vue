@@ -1,7 +1,7 @@
 <template>
   <div class='carousel'>
     <div class='slides-container'>
-      <img v-for='(image, index) in images':key='index' :class='["slide", getOrder(index)]'/>
+      <img v-for='(image, index) in images':key='index' :class='["slide", getOrder(index)]':src='images[index]'/>
     </div>
     <button class='controls btn-left' v-on:click='previous'></button>
     <button class='controls btn-right' v-on:click='next'/></button>
@@ -46,27 +46,21 @@ export default {
   float: left;
   position: relative;
 }
-img, .slides-container {
-  height: 90px;
-  width: 160px;
-}
-img:nth-of-type(1){
-  background-color: red;
-}
-img:nth-of-type(2){
-  background-color: green;
-}
-img:nth-of-type(3){
-  background-color: blue;
-}
 .slides-container {
+  min-height: 30vw;
+  min-width: 40vw;
   position:relative;
   overflow: hidden;
 }
+img {
+  width: 100%;
+  height: auto;
+}
 .slide {
   position: absolute;
-  top: 0px;
   left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
 
   transition: left 0.25s;
 }
