@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 id='header'>My projects.</h1>
-    <ProjectItem v-for='(project, index) in projects' :project="project" :index='index' :opacity='project.opacity' @inPosition='markLocation' :key="index">
+    <ProjectItem v-for='(project, index) in projects' :project="project" :index='index' :opacity='project.opacity' :resize='resize' @inPosition='markLocation' :key="index">
 
     </ProjectItem>
   </div>
@@ -15,9 +15,11 @@ export default {
   components: { ProjectItem },
   data() {
     return {
+      resize: false,
+      resizeTimer: null,
       projects: [
         {
-          title: 'Retro Desktop',
+          title: 'Retro Desktop', // eslint-disable-next-line
           description: 'An Angular 2 recreation of an old windows desktop. Complete with a text-editor, paint program, and minesweeper.',
           images: [
             '/static/assets/RD-1.png',
@@ -31,7 +33,7 @@ export default {
           opacity: '',
         },
         {
-          title: 'Dnd Campaign Manager',
+          title: 'Dnd Campaign Manager', // eslint-disable-next-line
           description: 'A D&D campaign manager made in Angular 2. It gives you the ability to create items, monsters, maps, and player characters. You can also limit the variety of monsters and items for ease of use when customizing your campaign.',
           images: [
             '/static/assets/CM-1.png',
@@ -50,7 +52,7 @@ export default {
           opacity: '',
         },
         {
-          title: 'Global Disease Simulator',
+          title: 'Global Disease Simulator', // eslint-disable-next-line
           description: 'An interactive simulation of a global pandemic made with vanilla javascript.',
           images: [
             '/static/assets/GDS-1.png',
@@ -72,6 +74,10 @@ export default {
     markLocation(data) {
       this.projects[data.index].top = data.top;
       this.projects[data.index].bottom = data.bottom;
+
+      if (data.index === this.projects.length - 1) {
+        this.resize = false;
+      }
     },
     updateChildren() {
       const viewportTop = window.pageYOffset;
@@ -79,18 +85,27 @@ export default {
       for (let i = 0; i < this.projects.length; i++) {
         const project = this.projects[i];
         if (project.bottom > viewportTop && project.top < viewportBottom) {
-          // let opacity = (opacity > 0 && opacity < 1) ? (viewportTop - project.top) / window.innerHeight : (opacity > 1) ? 1 : 0;
           const offset = (project.bottom - project.top);
-          this.projects[i].opacity = ((viewportTop - project.top) + offset) / (window.innerHeight/2);
+          this.projects[i].opacity = ((viewportTop - project.top) + offset) / (window.innerHeight / 2);
         }
       }
+    },
+    resizeChildren() {
+      this.resize = true;
     },
   },
   beforeMount() {
     window.addEventListener('scroll', this.updateChildren);
+    window.addEventListener('resize', () => {
+      clearTimeout(this.resizeTimer);
+      this.resizeTimer = setTimeout(() => {
+        this.resizeChildren();
+      }, 200);
+    });
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.updateChildren);
+    window.addEventListener('onresize', this.resizeChildren);
   },
 };
 </script>

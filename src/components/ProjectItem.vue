@@ -17,7 +17,7 @@ import Carousel from '@/components/Carousel';
 export default {
   name: 'ProjectItem',
   components: { Carousel },
-  props: ['project', 'index', 'opacity'],
+  props: ['project', 'index', 'opacity', 'resize'],
   data() {
     return {
       bgStyle: {
@@ -26,26 +26,34 @@ export default {
       },
     };
   },
-  methods: {},
+  methods: {
+    emitPosition() {
+      const top = this.$el.offsetTop;
+      this.$emit('inPosition', {
+        index: this.index,
+        top,
+        bottom: top + this.$el.offsetHeight,
+      });
+    },
+  },
   watch: {
     opacity() {
       this.bgStyle.opacity = this.opacity;
     },
+    resize() {
+      // on resize this will trigger and re-mark the project locations.
+      this.emitPosition();
+    },
   },
   mounted() {
-    const top = this.$el.offsetTop;
-    this.$emit('inPosition', {
-      index: this.index,
-      top,
-      bottom: top + this.$el.offsetHeight,
-    });
+    this.emitPosition();
   },
 };
 </script>
 
 <style scoped>
 .project-item {
-  margin: 65vh 0;
+  margin: 0 0 85vh ;
 }
 
 .project-item>*{
