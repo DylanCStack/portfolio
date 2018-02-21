@@ -1,9 +1,9 @@
 <template>
   <div class='project-item'>
-    <div class='bg' :style='bgStyle'>
+    <div :class='["bg", visible ? "animateIn" : "animateOut"]' :style='bgStyle'>
       <carousel :images='project.images'></carousel>
       <div class='text'>
-        <h3 class='title'>{{project.title}} {{opacity}}</h3>
+        <h3 class='title'>{{project.title}}</h3>
         <p class='description'>{{project.description}}</p>
         <p class='tech-list'><span class='tech' v-for='technology in project.technologies'>{{technology}}</span><span class='language' v-for='language in project.languages'>{{language}} </span></p>
       </div>
@@ -17,12 +17,11 @@ import Carousel from '@/components/Carousel';
 export default {
   name: 'ProjectItem',
   components: { Carousel },
-  props: ['project', 'index', 'opacity', 'resize'],
+  props: ['project', 'index', 'resize', 'visible'],
   data() {
     return {
       bgStyle: {
         'background-image': `url( ${this.project.images[0]})`,
-        opacity: this.opacity,
       },
     };
   },
@@ -37,9 +36,6 @@ export default {
     },
   },
   watch: {
-    opacity() {
-      this.bgStyle.opacity = this.opacity;
-    },
     resize() {
       // on resize this will trigger and re-mark the project locations.
       this.emitPosition();
@@ -73,7 +69,38 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  animation-timing-function: ease-in;
+  animation-duration: 500ms;
 }
+
+.animateIn{
+   animation-name: animateIn;
+   opacity: 1;
+}
+
+.animateOut{
+   animation-name: animateOut;
+   opacity: 0;
+}
+
+@keyframes animateIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes animateOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
 .carousel {
   margin: 0 2%;
 }

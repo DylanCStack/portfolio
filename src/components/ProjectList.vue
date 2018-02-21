@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 id='header'>My projects.</h1>
-    <ProjectItem v-for='(project, index) in projects' :project="project" :index='index' :opacity='project.opacity' :resize='resize' @inPosition='markLocation' :key="index">
+    <ProjectItem v-for='(project, index) in projects' :project="project" :index='index' :visible='project.visible' :resize='resize' @inPosition='markLocation' :key="index">
 
     </ProjectItem>
   </div>
@@ -30,7 +30,6 @@ export default {
           top: 0,
           bottom: 0,
           visible: 0,
-          opacity: '',
         },
         {
           title: 'Dnd Campaign Manager', // eslint-disable-next-line
@@ -49,7 +48,6 @@ export default {
           top: 0,
           bottom: 0,
           visible: 0,
-          opacity: '',
         },
         {
           title: 'Global Disease Simulator', // eslint-disable-next-line
@@ -65,7 +63,6 @@ export default {
           top: 0,
           bottom: 0,
           visible: 0,
-          opacity: '',
         },
       ],
     };
@@ -80,14 +77,13 @@ export default {
       }
     },
     updateChildren() {
-      const viewportTop = window.pageYOffset;
-      const viewportBottom = viewportTop + window.innerHeight;
+      //percent inset from top and bottom before element becomes (in)visible
+      const inset = window.innerHeight * 0.10;
+      const viewportTop = Math.ceil(window.pageYOffset + inset);
+      const viewportBottom = Math.floor((viewportTop + window.innerHeight) - (inset * 2));
       for (let i = 0; i < this.projects.length; i++) {
         const project = this.projects[i];
-        if (project.bottom > viewportTop && project.top < viewportBottom) {
-          const offset = (project.bottom - project.top);
-          this.projects[i].opacity = ((viewportTop - project.top) + offset) / (window.innerHeight / 2);
-        }
+        this.projects[i].visible = (project.bottom > viewportTop && project.top < viewportBottom);
       }
     },
     resizeChildren() {
