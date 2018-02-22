@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1 id='header'>My projects.</h1>
     <ProjectItem v-for='(project, index) in projects' :project="project" :index='index' :visible='project.visible' :resize='resize' @inPosition='markLocation' :key="index">
 
     </ProjectItem>
@@ -107,10 +106,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#header {
-  margin: 60px 10%;
-  margin-bottom: 95vh;
-  font-size: 5em;
-}
 
 </style>
