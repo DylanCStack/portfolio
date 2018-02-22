@@ -41,7 +41,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .carousel {
   float: left;
   position: relative;

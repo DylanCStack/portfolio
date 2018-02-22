@@ -47,7 +47,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+$language-color: #ff5500;
+
 .project-item {
   margin: 0 0 85vh ;
 }
@@ -124,7 +126,7 @@ export default {
 }
 
 .language {
-
+ color:$language-color;
 }
 
 </style>

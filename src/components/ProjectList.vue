@@ -106,7 +106,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 #header {
   margin: 60px 10%;
   margin-bottom: 95vh;
