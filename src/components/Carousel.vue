@@ -50,7 +50,6 @@ export default {
   min-width: 50%;
 
   .slides-container {
-    min-height: 30vw;
     min-width: 40vw;
     position:relative;
     overflow: hidden;
@@ -71,6 +70,8 @@ export default {
       }
       &.slide-focus {
         left:0%;
+        position: static;
+        transform: none;
       }
       &.slide-left {
         left: -100%;
@@ -87,11 +88,11 @@ export default {
 
     height: 100%;
     width: 100%;
-    opacity: 1;
 
-    transition: opacity 0.25s;
 
     button {
+      $button-transition-timing: 0.75s ease-out;
+
       position: relative;
       top: 0;
 
@@ -101,6 +102,18 @@ export default {
       height: 100%;
       width: 15%;
 
+      opacity: 0.2;
+      transition: opacity $button-transition-timing;
+
+      &:hover {
+        opacity:1;
+        img {
+          background: none;
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
       img {
         position: absolute;
         top: 50%;
@@ -110,16 +123,10 @@ export default {
 
         $border-radius: 50%;
         border-radius: 0 $border-radius $border-radius 0;
-
-        opacity: 0.6;
-        background: radial-gradient(circle closest-side at 50% 50%, rgba(0, 0, 0, 0.6) 40%, transparent);
       }
       &.btn-left {
         float: left;
-
-        &:hover {
-          background: linear-gradient(-90deg, transparent, black);
-        }
+        background: linear-gradient(-90deg, transparent, rgba(0, 0, 0, 0.6));
 
         img {
           left: 0;
@@ -128,10 +135,7 @@ export default {
       }
       &.btn-right {
         float: right;
-
-        &:hover {
-          background: linear-gradient(90deg, transparent, black);
-        }
+        background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.6));
 
         img {
           right: 0;
