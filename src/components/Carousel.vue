@@ -3,8 +3,10 @@
     <div class='slides-container'>
       <img v-for='(image, index) in images':key='index' :class='["slide", getOrder(index)]':src='images[index]'/>
     </div>
-    <button class='controls btn-left' v-on:click='previous'></button>
-    <button class='controls btn-right' v-on:click='next'/></button>
+    <div class='controls'>
+      <button class='btn-left' v-on:click='previous'><img src='/static/assets/svg/arrow.svg'/></button>
+      <button class='btn-right' v-on:click='next'><img src='/static/assets/svg/arrow.svg'/></button>
+    </div>
   </div>
 </template>
 
@@ -45,53 +47,98 @@ export default {
 .carousel {
   float: left;
   position: relative;
-}
-.slides-container {
-  min-height: 30vw;
-  min-width: 40vw;
-  position:relative;
-  overflow: hidden;
-}
-img {
-  width: 100%;
-  height: auto;
-}
-.slide {
-  position: absolute;
-  left: 0px;
-  top: 50%;
-  transform: translateY(-50%);
+  min-width: 50%;
 
-  transition: left 0.25s;
-}
-.slide-right {
-  left: 100%;
-}
-.slide-focus {
-  left:0;
-}
-.slide-left {
-  left: -100%;
-}
-.slide.slide-behind {
-  z-index: -1;
-}
-.controls {
-  position: absolute;
-  top: 10%;
-  height: 80%;
-  width: 5%;
-  opacity: 0.6;
+  .slides-container {
+    min-height: 30vw;
+    min-width: 40vw;
+    position:relative;
+    overflow: hidden;
 
-  transition: opacity 0.25s;
-}
-.controls:hover {
-  opacity: 1;
-}
-.btn-left {
-  left: -2.5%;
-}
-.btn-right {
-  right: -2.5%;
+    .slide {
+      position: absolute;
+      left: 0px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      width: 100%;
+      height: auto;
+
+      transition: left 0.25s;
+
+      &.slide-right {
+        left: 100%;
+      }
+      &.slide-focus {
+        left:0%;
+      }
+      &.slide-left {
+        left: -100%;
+      }
+      &.slide.slide-behind {
+        z-index: -1;
+      }
+    }
+  }
+  .controls {
+    position: absolute;
+    top:0;
+    left:0;
+
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+
+    transition: opacity 0.25s;
+
+    button {
+      position: relative;
+      top: 0;
+
+      outline:none;
+
+      background: transparent;
+      height: 100%;
+      width: 15%;
+
+      img {
+        position: absolute;
+        top: 50%;
+        width: 50%;
+        height: auto;
+        padding: 15%;
+
+        $border-radius: 50%;
+        border-radius: 0 $border-radius $border-radius 0;
+
+        opacity: 0.6;
+        background: radial-gradient(circle closest-side at 50% 50%, rgba(0, 0, 0, 0.6) 40%, transparent);
+      }
+      &.btn-left {
+        float: left;
+
+        &:hover {
+          background: linear-gradient(-90deg, transparent, black);
+        }
+
+        img {
+          left: 0;
+          transform: translate(-30%, -50%) rotate(180deg);
+        }
+      }
+      &.btn-right {
+        float: right;
+
+        &:hover {
+          background: linear-gradient(90deg, transparent, black);
+        }
+
+        img {
+          right: 0;
+          transform: translate(30%, -50%);
+        }
+      }
+    }
+  }
 }
 </style>

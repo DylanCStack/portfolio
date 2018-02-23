@@ -1,11 +1,13 @@
 <template>
   <div class='project-item'>
     <div :class='["bg", visible ? "animateIn" : "animateOut"]' :style='bgStyle'>
-      <carousel :images='project.images'></carousel>
-      <div class='text'>
-        <h3 class='title'>{{project.title}}</h3>
-        <p class='description'>{{project.description}}</p>
-        <p class='tech-list'><span class='tech' v-for='technology in project.technologies'>{{technology}}</span><span class='language' v-for='language in project.languages'>{{language}} </span></p>
+      <div class='details'>
+        <carousel :images='project.images'></carousel>
+        <div class='text'>
+          <h3 class='title'>{{project.title}}</h3>
+          <p class='description'>{{project.description}}</p>
+          <p class='tech-list'><span class='tech' v-for='technology in project.technologies'>{{technology}}</span><span class='language' v-for='language in project.languages'>{{language}} </span></p>
+        </div>
       </div>
     </div>
   </div>
@@ -101,6 +103,18 @@ $language-color: #ff5500;
   to {
     opacity: 0;
   }
+}
+
+.details {
+  background:rgba($primary-color-darker, .825);
+
+  min-height: 35%;
+  padding: 20px;
+  margin: 10px;
+
+  border-radius: 6px;
+  border-style: ridge;
+  border: 2px outset rgba(255, 255, 255, 0.2);
 }
 
 .carousel {
