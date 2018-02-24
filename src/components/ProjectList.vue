@@ -23,6 +23,10 @@ export default {
           images: [
             '/static/assets/RD-1.png',
             '/static/assets/RD-2.png',
+            '/static/assets/RD-3.png',
+            '/static/assets/RD-4.png',
+            '/static/assets/RD-5.png',
+            '/static/assets/RD-6.png',
           ],
           technologies: ['Angular 2', 'Express.js'],
           languages: ['Javascript', 'SQL'],
@@ -56,6 +60,7 @@ export default {
             '/static/assets/GDS-2.png',
             '/static/assets/GDS-3.png',
             '/static/assets/GDS-4.png',
+            '/static/assets/GDS-5.png',
           ],
           technologies: [],
           languages: ['Javascript'],
