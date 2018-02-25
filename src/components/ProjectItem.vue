@@ -51,17 +51,14 @@ export default {
 
 <style lang="scss" scoped>
 $language-color: #ff5500;
+$height: 95vh;
 
 .project-item {
   margin: 0 0 85vh ;
 }
 
-.project-item>*{
-  padding:20px 0 0 3%;
-}
-
 .project-item .bg {
-  height: 95vh;
+  min-height: $height;
   width: 100%;
   border-top: 2px solid;
   border-bottom: 2px solid;
@@ -108,39 +105,85 @@ $language-color: #ff5500;
 .details {
   background:rgba($primary-color-darker, .825);
 
-  min-height: 35%;
+  max-height: $height - 10;
   padding: 20px;
+  padding-bottom: 10%;
   margin: 10px;
 
   border-radius: 6px;
   border-style: ridge;
   border: 2px outset rgba(255, 255, 255, 0.2);
+
+  overflow-y: scroll;
+
+  @include media($media-s) {
+    margin: 1% auto;
+    max-width: 80%;
+  }
 }
 
 .carousel {
-  margin: 0 2%;
+
 }
+
 .text {
-  padding: 2%;
-}
-.title {
-  margin: 1%;
+  $spacing: 3%;
+
+  padding-top: $spacing;
+  display: inline-block;
+
+  .title {
+    font-size: 35px;
+    margin-bottom: $spacing;
+  }
+  p {
+    font-size: 14px;
+    margin: 20px 0;
+  }
+  .language {
+    color:$language-color;
+  }
+  .tech {
+
+  }
+  .tech-list>* {
+    margin-right:0.3em;
+  }
+  @include media($media-xs) {
+
+    .description {
+      font-size: 25px;
+      margin-bottom: $spacing/2;
+    }
+
+    .tech-list>* {
+      font-size: 18px;
+    }
+
+    .tech {
+
+    }
+    
+    @include media($media-s){
+      .description {
+        font-size: 20px;
+      }
+    }
+
+    @include media($media-m) {
+      padding: $spacing;
+      float:right;
+      max-width: 44%;
+
+      .description {
+        font-size: 18px;
+      }
+      .tech-list {
+        font-size: 16px;
+      }
+    }
+  }
 }
 
-.description {
-
-}
-
-.tech-list>* {
-  margin-right:0.3em;
-}
-
-.tech {
-
-}
-
-.language {
- color:$language-color;
-}
 
 </style>

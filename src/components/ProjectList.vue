@@ -81,7 +81,7 @@ export default {
       }
     },
     updateChildren() {
-      //percent inset from top and bottom before element becomes (in)visible
+      // percent inset from top and bottom before element becomes (in)visible
       const inset = window.innerHeight * 0.10;
       const viewportTop = Math.ceil(window.pageYOffset + inset);
       const viewportBottom = Math.floor((viewportTop + window.innerHeight) - (inset * 2));

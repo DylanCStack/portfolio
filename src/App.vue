@@ -15,8 +15,8 @@ export default {
     return {
       title: 'My projects.', // eslint-disable-next-line
       summary: 'Hello you! My name is Dylan Stackhouse. I am a junior developer in Portland, OR with experience working with AR, 3D, QA, and web development. My latest passions are personal automation and visualization.',
-    }
-  }
+    };
+  },
 };
 </script>
 
@@ -57,10 +57,14 @@ body{
 #header {
   margin: 60px 10%;
   margin-bottom: 95vh;
+
 }
 #title {
-  font-size: 5em;
+  font-size: 13vw;
 
+  @include media($media-s) {
+    font-size: 5em;
+  }
 }
 #summary {
   margin: 30px 0;

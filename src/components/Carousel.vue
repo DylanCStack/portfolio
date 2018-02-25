@@ -45,9 +45,14 @@ export default {
 
 <style lang="scss" scoped>
 .carousel {
-  float: left;
   position: relative;
   min-width: 50%;
+
+  @include media($media-m) {
+    min-width: 0;
+    max-width: 50%;
+    display: inline-block;
+  }
 
   .slides-container {
     min-width: 40vw;
@@ -60,7 +65,7 @@ export default {
       top: 50%;
       transform: translateY(-50%);
 
-      width: 100%;
+      max-width: 100%;
       height: auto;
 
       transition: left 0.25s;
@@ -69,7 +74,7 @@ export default {
         left: 100%;
       }
       &.slide-focus {
-        left:0%;
+        left: 0%;
         position: static;
         transform: none;
       }
@@ -79,6 +84,7 @@ export default {
       &.slide.slide-behind {
         z-index: -1;
       }
+
     }
   }
   .controls {
