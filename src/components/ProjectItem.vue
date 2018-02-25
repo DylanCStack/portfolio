@@ -114,8 +114,6 @@ $height: 95vh;
   border-style: ridge;
   border: 2px outset rgba(255, 255, 255, 0.2);
 
-  overflow-y: scroll;
-
   @include media($media-s) {
     margin: 1% auto;
     max-width: 80%;
@@ -163,7 +161,7 @@ $height: 95vh;
     .tech {
 
     }
-    
+
     @include media($media-s){
       .description {
         font-size: 20px;

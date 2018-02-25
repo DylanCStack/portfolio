@@ -55,7 +55,6 @@ export default {
   }
 
   .slides-container {
-    min-width: 40vw;
     position:relative;
     overflow: hidden;
 
