@@ -6,7 +6,7 @@
         <div class='text'>
           <h3 class='title'>{{project.title}}</h3>
           <p class='description'>{{project.description}}</p>
-          <p class='tech-list'><span class='tech' v-for='technology in project.technologies'>{{technology}}</span><span class='language' v-for='language in project.languages'>{{language}} </span></p>
+          <p class='tech-list'><span class='tech' v-for='technology in project.technologies' v-html='technology'></span><span class='language' v-for='language in project.languages'>{{language}} </span></p>
         </div>
       </div>
     </div>
