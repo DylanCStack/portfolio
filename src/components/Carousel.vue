@@ -1,7 +1,7 @@
 <template>
   <div class='carousel' >
     <div v-for='n in (inLightbox ? 2 : 1)'>
-      <div class='slides-container'>
+      <div class='slides-container' v-on:click='lightbox($event)'>
         <img v-for='(image, index) in images':key='index' :class='["slide", getOrder(index)]' :src='images[index]'/>
       </div>
       <div class='controls' v-on:click='lightbox($event)'>
@@ -15,7 +15,7 @@
 <script>
 export default {
   name: 'Carousel',
-  props: ['images'],
+  props: ['images', 'visible'],
   data() {
     return {
       motion: '',
@@ -57,13 +57,25 @@ export default {
       }, 7000);
     },
   },
+  watch: {
+    visible() {
+      this.inLightbox = false;
+    }
+  },
   mounted() {
     this.autoplay();
+  },
+  beforeMount() {
+    window.addEventListener('keyup', ()=>(this.inLightbox = false));
+  },
+  beforeDestroy() {
+    window.removeEventListener('keyup', ()=>(this.inLightbox = false));
   },
 };
 </script>
 
 <style lang="scss" scoped>
+$full-width: calc(100vw - (100vw - 100%));
 .carousel {
   position: relative;
   min-width: 50%;
@@ -172,18 +184,45 @@ export default {
   &>div:nth-of-type(2) {
     &:before {
       content: '';
-      position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
+      width: $full-width;
       height: 100vh;
+      position: fixed;
       background: rgba(0, 0, 0, 0.7);
     }
+
     position: fixed;
-    top: 15%;
-    left:0;
-    width: 100vw;
-    height: auto;
+    top: 0;
+    left: 0;
+    width: $full-width;
+    height: 100vh;
+    .slides-container, .slides-container * {
+      top: 10%;
+      width: $full-width;
+      height: auto;
+
+      max-width: none;
+      max-height: none;
+    }
+    .slide {
+      position: absolute;
+      left: 0px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      max-width: 100%;
+      height: auto;
+
+      transition: left 1s;
+    }
+    .controls button.btn-left img {
+      transform: translate(0, -50%) rotate(180deg);
+
+    }
+    .controls button.btn-right img {
+      transform: translate(0, -50%);
+    }
   }
 }
 </style>

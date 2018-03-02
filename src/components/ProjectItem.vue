@@ -2,7 +2,7 @@
   <div class='project-item'>
     <div :class='["bg", visible ? "animateIn" : "animateOut"]' :style='bgStyle'>
       <div class='details'>
-        <carousel :images='project.images'></carousel>
+        <carousel :images='project.images' :visible='visible'></carousel>
         <div class='text'>
           <h3 class='title'>{{project.title}}</h3>
           <p class='description'>{{project.description}}</p>
