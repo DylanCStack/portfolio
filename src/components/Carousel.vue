@@ -1,11 +1,13 @@
 <template>
-  <div class='carousel'>
-    <div class='slides-container'>
-      <img v-for='(image, index) in images':key='index' :class='["slide", getOrder(index)]':src='images[index]'/>
-    </div>
-    <div class='controls'>
-      <button class='btn-left' v-on:click='previous'><img src='/static/assets/svg/arrow.svg'/></button>
-      <button class='btn-right' v-on:click='next'><img src='/static/assets/svg/arrow.svg'/></button>
+  <div class='carousel' >
+    <div v-for='n in (inLightbox ? 2 : 1)'>
+      <div class='slides-container'>
+        <img v-for='(image, index) in images':key='index' :class='["slide", getOrder(index)]' :src='images[index]'/>
+      </div>
+      <div class='controls' v-on:click='lightbox($event)'>
+        <button class='btn-left' v-on:click='previous'><img src='/static/assets/svg/arrow.svg'/></button>
+        <button class='btn-right' v-on:click='next'><img src='/static/assets/svg/arrow.svg'/></button>
+      </div>
     </div>
   </div>
 </template>
@@ -18,6 +20,7 @@ export default {
     return {
       motion: '',
       focus: 0,
+      inLightbox: false,
       autoID: 0,
     };
   },
@@ -31,6 +34,11 @@ export default {
       }
       // eslint-disable-next-line
       return 'slide-left' + (this.motion === 'left' ? ' slide-behind' : '');
+    },
+    lightbox(e) {
+      if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'IMG') {
+        this.inLightbox = !this.inLightbox;
+      }
     },
     previous() {
       this.motion = 'left';
@@ -160,6 +168,22 @@ export default {
         }
       }
     }
+  }
+  &>div:nth-of-type(2) {
+    &:before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.7);
+    }
+    position: fixed;
+    top: 15%;
+    left:0;
+    width: 100vw;
+    height: auto;
   }
 }
 </style>
