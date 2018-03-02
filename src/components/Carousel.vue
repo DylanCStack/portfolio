@@ -18,6 +18,7 @@ export default {
     return {
       motion: '',
       focus: 0,
+      autoID: 0,
     };
   },
   methods: {
@@ -34,11 +35,22 @@ export default {
     previous() {
       this.motion = 'left';
       this.focus = ((this.focus + (this.images.length - 1)) % this.images.length);
+      this.autoplay();
     },
     next() {
       this.motion = 'right';
       this.focus = (this.focus + 1) % this.images.length;
+      this.autoplay();
     },
+    autoplay() {
+      clearInterval(this.autoID);
+      this.autoID = setInterval(() => {
+        this.next();
+      }, 7000);
+    },
+  },
+  mounted() {
+    this.autoplay();
   },
 };
 </script>
