@@ -5,6 +5,9 @@
       <p id='summary'>{{summary}}</p>
     </header>
     <router-view/>
+    <footer id='contact'>
+      <p><a v-for='contact of contactInfo' :href='contact.link'>{{contact.text}}</a></p>
+    </footer>
   </div>
 </template>
 
@@ -15,6 +18,20 @@ export default {
     return {
       title: 'My projects.', // eslint-disable-next-line
       summary: 'Hello you! My name is Dylan Stackhouse. I am a junior developer in Portland, OR with experience working with AR, 3D, QA, and web development. My latest passions are personal automation and visualization.',
+      contactInfo: [
+        {
+          text: 'Stackhouse.Dylan@gmail.com',
+          link: 'mailto:Stackhouse.Dylan@gmail.com',
+        },
+        {
+          text: 'Linkedin/dylan-stackhouse',
+          link: 'https://www.linkedin.com/in/dylan-stackhouse/',
+        },
+        {
+          text: 'GitHub/DylanCStack',
+          link: 'https://github.com/DylanCStack',
+        },
+      ],
     };
   },
 };
@@ -84,6 +101,23 @@ body{
       }
       #summary {
         font-size: 25px;
+      }
+    }
+  }
+}
+footer#contact{
+  width: 100%;
+  p {
+    width:100%;
+    text-align: center;
+    margin-bottom: 2%;
+    a {
+      &:not(:first-of-type)::before {
+        content: ' | ';
+      }
+      color: $primary-color-lighter;
+      &:visited {
+        color: $primary-color-lighter;
       }
     }
   }
